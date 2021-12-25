@@ -4,14 +4,17 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const TaskInput = (props) => {
   const [value, setValue] = useState("");
+
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };
+
   const handleOnKeyPress = (e) => {
     if (e.key == "Enter") {
       console.log(e.key);
     }
   };
+  
   return (
     <div className="inputTask">
       <FontAwesomeIcon icon={faCheck} className="icon" />
