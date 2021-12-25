@@ -34,11 +34,15 @@ const AppContainer = (props) => {
     setTasks(tasks)
   }
 
+  const handleOnClickCategory = (category) => {
+    setCategory(category)
+  }
+
   return (
     <div className="App">
       <TaskInput addTask={addTask} />
       <TaskContainer tasks={tasks} category={category} />
-      <Categories />
+      <Categories onClick={handleOnClickCategory} />
     </div>
   );
 };
