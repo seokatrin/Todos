@@ -54,7 +54,7 @@ const Input = ({ value, onChange, onKeyPress }) => {
       onChange={onChange}
       onKeyPress={onKeyPress}
       type="text"
-      maxLength={55}
+      maxLength={100}
     />
   );
 };

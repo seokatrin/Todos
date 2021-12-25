@@ -4,7 +4,7 @@ import DeleteBtn from "./DeleteBtn";
 const TaskItem = ({category, onDoubleClick, task, deleteTask}) => {
     return (
         <div
-        className={`taskAndBtn ${category && "complited"} `}
+        className={`taskAndBtn ${category ? "complited" : ''} `}
         onDoubleClick={onDoubleClick}
       >
         {task}
