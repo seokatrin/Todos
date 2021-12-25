@@ -10,10 +10,10 @@ const TaskInput = ({ addTask, tasks, toggleTaskCategory }) => {
 
   useEffect(() => {
     setCompletedTasks(isCompleted);
-  }, tasks);
+  }, [isCompleted]);
 
   const handleOnChange = (e) => {
-    setValue(e.target.value);
+      setValue(e.target.value);
   };
 
   const handleOnKeyPress = (e) => {
@@ -53,6 +53,8 @@ const Input = ({ value, onChange, onKeyPress }) => {
       value={value}
       onChange={onChange}
       onKeyPress={onKeyPress}
+      type="text"
+      maxLength={55}
     />
   );
 };
