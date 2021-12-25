@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import TaskInput from "./Components/TaskInput";
+import TaskContainer from "./Components/TaskContainer";
+import Categories from "./Components/Categories";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper">
+      <div className="App">
+        <TaskInput />
+        <TaskContainer tasks={tasks} category="all" />
+        <Categories />
+      </div>
     </div>
   );
 }
 
 export default App;
+
+const tasks = [
+  { id: 1, task: "Learn JS", category: "incomplited" },
+  { id: 2, task: "Learn React", category: "incomplited" },
+];
