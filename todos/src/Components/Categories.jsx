@@ -1,4 +1,5 @@
 import React from "react";
+import DeleteAllCompletedTaskBtn from "./DeleteAllCompletedTaskBtn";
 
 const Categories = (props) => {
   const items = props.items;
@@ -18,7 +19,10 @@ const Categories = (props) => {
   return (
     <div className="categories">
       <p>{`${items} ${items === 1 ? "item" : "items"} left`}</p>
+      <div>
       {categories}
+      </div>
+      <DeleteAllCompletedTaskBtn />
     </div>
   );
 };
