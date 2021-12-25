@@ -45,12 +45,17 @@
     padding: 10px 10px 10px 15px;
     border-bottom: 1px solid rgb(126, 126, 126, 0.5);
 }
-.inputTask input{
+.inputTask input,
+.changingInput{
     width: 89%;
     padding: 10px;
     font-size: 20px;
     outline: none;
     border: none;
+}
+.changingInput{
+    border: 1px solid rgb(126, 126, 126, 0.5);
+    margin-left: 45px;
 }
 .icon{
     color: rgb(182, 179, 179, 0.5);

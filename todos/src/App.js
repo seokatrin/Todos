@@ -47,6 +47,11 @@ const AppContainer = (props) => {
     getTasks();
   };
 
+  const changeTask = (id, taskToChange) => {
+    Api.changeTask(id, "task", taskToChange);
+    getTasks();
+  }
+
   const countItemsLeft = tasks.filter((task) => task.category === "active");
 
   return (
@@ -57,6 +62,7 @@ const AppContainer = (props) => {
         category={category}
         deleteTask={deleteTask}
         completeTask={completeTask}
+        changeTask={changeTask}
       />
       <Categories
         items={countItemsLeft.length}

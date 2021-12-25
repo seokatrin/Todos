@@ -19,6 +19,7 @@ const TaskContainer = (props) => {
               category={task.category}
               deleteTask={() => props.deleteTask(task.id)}
               completeTask={() => props.completeTask(task.id)}
+              changeTask={(taskToChange) => props.changeTask(task.id, taskToChange)}
             />
           </div>
         ))}
