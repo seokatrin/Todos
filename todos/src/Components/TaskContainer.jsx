@@ -12,7 +12,7 @@ const TaskContainer = (props) => {
 
     return (
         <>
-            {taskArr.map(task => <div key={task.id}>
+            {taskArr && taskArr.map(task => <div key={task.id}>
                 <Task task={task.task} />
             </div>)}
         </>

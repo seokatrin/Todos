@@ -11,7 +11,8 @@ const TaskInput = (props) => {
 
   const handleOnKeyPress = (e) => {
     if (e.key == "Enter") {
-      console.log(e.key);
+      props.addTask(value);
+      setValue('')
     }
   };
   

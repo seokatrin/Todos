@@ -2,6 +2,8 @@ import "./App.css";
 import TaskInput from "./Components/TaskInput";
 import TaskContainer from "./Components/TaskContainer";
 import Categories from "./Components/Categories";
+import { useEffect, useState } from "react";
+import Api from "./Api";
 
 function App() {
   return (
@@ -13,20 +15,35 @@ function App() {
 
 export default App;
 
-const tasks = [
-  { id: 1, task: "Learn JS", category: "active" },
-  { id: 2, task: "Learn React", category: "active" },
-];
+
 
 const AppContainer = (props) => {
 
+  const [category, setCategory] = useState('all');
 
+  const [tasks, setTasks] = useState(null);
+
+  useEffect(() => {
+    const tasks = Api.getTasks()
+    setTasks(tasks)
+  }, []);
+
+  const addTask = (taskToSet) => {
+    Api.setTasks(taskToSet);
+    const tasks = Api.getTasks();
+    setTasks(tasks)
+  }
 
   return (
     <div className="App">
-      <TaskInput />
-      <TaskContainer tasks={tasks} category="all" />
+      <TaskInput addTask={addTask} />
+      <TaskContainer tasks={tasks} category={category} />
       <Categories />
     </div>
   );
 };
+
+const tasks = [
+  { id: 1, task: "Learn JS", category: "active" },
+  { id: 2, task: "Learn React", category: "active" },
+];
