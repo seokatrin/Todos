@@ -1,15 +1,15 @@
 import React from "react";
 import DeleteAllCompletedTaskBtn from "./DeleteAllCompletedTaskBtn";
 
-const Categories = (props) => {
-  const items = props.items;
-  const chosenCategory = props.category;
+const Categories = ({items, category, onClick, completedTaskCount, deleteAllCompletedTask}) => {
+  // const items = props.items;
+  const chosenCategory = category;
 
   let categories = ["all", "active", "complited"];
   categories = categories.map((category) => (
     <span
       key={category}
-      onClick={() => props.onClick(category)}
+      onClick={() => onClick(category)}
       className={chosenCategory === category ? "active" : ""}
     >
       {category[0].toUpperCase() + category.slice(1)}
@@ -22,7 +22,7 @@ const Categories = (props) => {
       <div>
       {categories}
       </div>
-      <DeleteAllCompletedTaskBtn />
+      <DeleteAllCompletedTaskBtn completedTaskCount={completedTaskCount} deleteAllCompletedTask={deleteAllCompletedTask} />
     </div>
   );
 };

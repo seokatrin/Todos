@@ -42,6 +42,11 @@ const AppContainer = (props) => {
     getTasks();
   };
 
+  const deleteAllCompletedTask = () => {
+    Api.deleteTask(null);
+    getTasks();
+  }
+
   const completeTask = (id) => {
     Api.changeTask(id, "category");
     getTasks();
@@ -53,6 +58,7 @@ const AppContainer = (props) => {
   }
 
   const countItemsLeft = tasks.filter((task) => task.category === "active");
+  const completedTaskCount = tasks.filter(task => task.category === 'complited');
 
   return (
     <div className="App">
@@ -68,6 +74,8 @@ const AppContainer = (props) => {
         items={countItemsLeft.length}
         onClick={handleOnClickCategory}
         category={category}
+        completedTaskCount={completedTaskCount.length}
+        deleteAllCompletedTask={deleteAllCompletedTask}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 
-const DeleteAllCompletedTaskBtn = () => {
-    return <div className="deleteCompletedBtn">
+const DeleteAllCompletedTaskBtn = ({completedTaskCount, deleteAllCompletedTask}) => {
+    return <div onClick={deleteAllCompletedTask} className={`deleteCompletedBtn ${completedTaskCount > 0 ? '' : 'invisible'}`}>
         Clear Completed
     </div>
 }

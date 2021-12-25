@@ -92,3 +92,6 @@ span.active,
 .deleteCompletedBtn:hover{
     border-bottom: 1px solid rgb(126, 126, 126, 0.5);
 }
+.invisible{
+    visibility: hidden;
+}
