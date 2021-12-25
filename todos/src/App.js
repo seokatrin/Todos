@@ -2,7 +2,7 @@ import "./App.css";
 import TaskInput from "./Components/TaskInput";
 import TaskContainer from "./Components/TaskContainer";
 import Categories from "./Components/Categories";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Api from "./Api";
 
 function App() {
@@ -53,6 +53,11 @@ const AppContainer = (props) => {
     getTasks();
   };
 
+  const toggleTaskCategory = (category) => {
+    Api.changeCategory(category);
+    getTasks();
+  };
+
   const countItemsLeft = tasks.filter((task) => task.category === "active");
   const completedTaskCount = tasks.filter(
     (task) => task.category === "complited"
@@ -60,7 +65,11 @@ const AppContainer = (props) => {
 
   return (
     <div className="App">
-      <TaskInput addTask={addTask} />
+      <TaskInput
+        addTask={addTask}
+        tasks={tasks}
+        toggleTaskCategory={toggleTaskCategory}
+      />
       <TaskContainer
         tasks={tasks}
         category={category}

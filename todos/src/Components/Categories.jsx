@@ -1,8 +1,13 @@
 import React from "react";
 import DeleteAllCompletedTaskBtn from "./DeleteAllCompletedTaskBtn";
 
-const Categories = ({items, category, onClick, completedTaskCount, deleteAllCompletedTask}) => {
-  // const items = props.items;
+const Categories = ({
+  items,
+  category,
+  onClick,
+  completedTaskCount,
+  deleteAllCompletedTask,
+}) => {
   const chosenCategory = category;
 
   let categories = ["all", "active", "complited"];
@@ -19,10 +24,11 @@ const Categories = ({items, category, onClick, completedTaskCount, deleteAllComp
   return (
     <div className="categories">
       <p>{`${items} ${items === 1 ? "item" : "items"} left`}</p>
-      <div>
-      {categories}
-      </div>
-      <DeleteAllCompletedTaskBtn completedTaskCount={completedTaskCount} deleteAllCompletedTask={deleteAllCompletedTask} />
+      <div>{categories}</div>
+      <DeleteAllCompletedTaskBtn
+        completedTaskCount={completedTaskCount}
+        deleteAllCompletedTask={deleteAllCompletedTask}
+      />
     </div>
   );
 };

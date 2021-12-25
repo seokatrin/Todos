@@ -29,13 +29,19 @@ export default class Api {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
+  static changeCategory(category) {
+    const tasks = Api.getTasks();
+    tasks.forEach(task => task.category = category);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }
+
   static deleteTask(id) {
     const tasks = Api.getTasks();
 
     const newTasks = id
       ? tasks.filter((task) => task.id != id)
       : tasks.filter((task) => task.category !== "complited");
-      
+
     localStorage.setItem("tasks", JSON.stringify(newTasks));
   }
 }

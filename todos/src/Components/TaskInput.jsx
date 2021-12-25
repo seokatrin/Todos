@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const TaskInput = (props) => {
+const TaskInput = ({ addTask, tasks, toggleTaskCategory }) => {
+  const isCompleted = tasks.every((task) => task.category === "complited");
+
   const [value, setValue] = useState("");
+  const [completedTasks, setCompletedTasks] = useState(isCompleted);
+
+  useEffect(() => {
+    setCompletedTasks(isCompleted);
+  }, tasks);
 
   const handleOnChange = (e) => {
     setValue(e.target.value);
@@ -11,14 +18,23 @@ const TaskInput = (props) => {
 
   const handleOnKeyPress = (e) => {
     if (e.key == "Enter") {
-      props.addTask(value);
-      setValue('')
+      addTask(value);
+      setValue("");
     }
   };
-  
+
+  const handleOnClick = () => {
+    const category = completedTasks ? "active" : "complited";
+    toggleTaskCategory(category);
+  };
+
   return (
     <div className="inputTask">
-      <FontAwesomeIcon icon={faCheck} className="icon" />
+      <FontAwesomeIcon
+        onClick={handleOnClick}
+        icon={faCheck}
+        className={`icon ${completedTasks ? "iconActive" : ""}`}
+      />
       <Input
         value={value}
         onChange={handleOnChange}
@@ -30,13 +46,13 @@ const TaskInput = (props) => {
 
 export default TaskInput;
 
-const Input = (props) => {
+const Input = ({ value, onChange, onKeyPress }) => {
   return (
     <input
       placeholder="What needs to be done?"
-      value={props.value}
-      onChange={props.onChange}
-      onKeyPress={props.onKeyPress}
+      value={value}
+      onChange={onChange}
+      onKeyPress={onKeyPress}
     />
   );
 };
