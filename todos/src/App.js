@@ -17,16 +17,12 @@ export default App;
 
 const AppContainer = (props) => {
   const [category, setCategory] = useState("all");
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(Api.getTasks());
 
   const getTasks = () => {
     const tasks = Api.getTasks();
     setTasks(tasks);
   };
-
-  useEffect(() => {
-    getTasks();
-  }, []);
 
   const addTask = (taskToSet) => {
     Api.setTasks(taskToSet);
@@ -45,7 +41,7 @@ const AppContainer = (props) => {
   const deleteAllCompletedTask = () => {
     Api.deleteTask(null);
     getTasks();
-  }
+  };
 
   const completeTask = (id) => {
     Api.changeTask(id, "category");
@@ -55,10 +51,12 @@ const AppContainer = (props) => {
   const changeTask = (id, taskToChange) => {
     Api.changeTask(id, "task", taskToChange);
     getTasks();
-  }
+  };
 
   const countItemsLeft = tasks.filter((task) => task.category === "active");
-  const completedTaskCount = tasks.filter(task => task.category === 'complited');
+  const completedTaskCount = tasks.filter(
+    (task) => task.category === "complited"
+  );
 
   return (
     <div className="App">
@@ -70,13 +68,17 @@ const AppContainer = (props) => {
         completeTask={completeTask}
         changeTask={changeTask}
       />
-      <Categories
-        items={countItemsLeft.length}
-        onClick={handleOnClickCategory}
-        category={category}
-        completedTaskCount={completedTaskCount.length}
-        deleteAllCompletedTask={deleteAllCompletedTask}
-      />
+      {tasks.length > 0 ? (
+        <Categories
+          items={countItemsLeft.length}
+          onClick={handleOnClickCategory}
+          category={category}
+          completedTaskCount={completedTaskCount.length}
+          deleteAllCompletedTask={deleteAllCompletedTask}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };
