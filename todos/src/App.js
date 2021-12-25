@@ -22,15 +22,15 @@ const AppContainer = (props) => {
   const getTasks = () => {
     const tasks = Api.getTasks();
     setTasks(tasks);
-  }
+  };
 
   useEffect(() => {
-    getTasks()
+    getTasks();
   }, []);
 
   const addTask = (taskToSet) => {
     Api.setTasks(taskToSet);
-    getTasks()
+    getTasks();
   };
 
   const handleOnClickCategory = (category) => {
@@ -39,15 +39,25 @@ const AppContainer = (props) => {
 
   const deleteTask = (id) => {
     Api.deleteTask(id);
-    getTasks()
-  }
+    getTasks();
+  };
+
+  const completeTask = (id) => {
+    Api.changeTask(id, "category");
+    getTasks();
+  };
 
   const countItemsLeft = tasks.filter((task) => task.category === "active");
 
   return (
     <div className="App">
       <TaskInput addTask={addTask} />
-      <TaskContainer tasks={tasks} category={category} deleteTask={deleteTask} />
+      <TaskContainer
+        tasks={tasks}
+        category={category}
+        deleteTask={deleteTask}
+        completeTask={completeTask}
+      />
       <Categories
         items={countItemsLeft.length}
         onClick={handleOnClickCategory}
@@ -56,5 +66,3 @@ const AppContainer = (props) => {
     </div>
   );
 };
-
-
