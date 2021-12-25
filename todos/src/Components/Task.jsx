@@ -1,27 +1,35 @@
 import React, { useState } from "react";
-import DeleteBtn from "./DeleteBtn";
 import DoneBtn from "./DoneBtn";
+import TaskItem from "./TaskItem";
 
 const Task = (props) => {
   const [editMode, setEditMode] = useState(false);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(props.task);
 
   const category = props.category === "complited" ? "complited" : null;
 
+  const handleDblClick = () => {
+    setEditMode(true);
+  };
+
   const handleOnchange = (e) => {
     setValue(e.target.value);
-    
+  };
+
+  const saveChangedTask = () => {
+    setEditMode(false);
+    if (value === "") {
+      props.deleteTask();
+    } else {
+      props.changeTask(value);
+    }
   };
   const handleOnBlur = () => {
-    setEditMode(false)
-    props.changeTask(value)
+    saveChangedTask()
   };
 
   const handleOnKeyPress = (e) => {
-    if (e.key === "Enter") {
-        setEditMode(false)
-        props.changeTask(value)
-    }
+    saveChangedTask()
   };
 
   if (editMode) {
@@ -39,13 +47,12 @@ const Task = (props) => {
   return (
     <div className="task">
       <DoneBtn completeTask={props.completeTask} category={category} />
-      <div
-        className={`taskAndBtn ${category && "complited"} `}
-        onDoubleClick={() => setEditMode(true)}
-      >
-        {props.task}
-        <DeleteBtn deleteTask={props.deleteTask} />
-      </div>
+      <TaskItem
+        category={category}
+        task={props.task}
+        deleteTask={props.deleteTask}
+        onDoubleClick={handleDblClick}
+      />
     </div>
   );
 };
