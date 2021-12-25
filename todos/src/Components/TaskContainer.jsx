@@ -13,7 +13,7 @@ const TaskContainer = (props) => {
     return (
         <>
             {taskArr && taskArr.map(task => <div key={task.id}>
-                <Task task={task.task} />
+                <Task task={task.task} deleteTask={() => props.deleteTask(task.id)} />
             </div>)}
         </>
     )

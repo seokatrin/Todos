@@ -8,9 +8,8 @@ const Task = (props) => {
             <DoneBtn />
             <div className="taskAndBtn">
             {props.task}
-            <DeleteBtn />
+            <DeleteBtn deleteTask={props.deleteTask} />
             </div>
-            
         </div>
     )
 }
