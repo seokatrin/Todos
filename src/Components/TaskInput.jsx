@@ -18,6 +18,7 @@ const TaskInput = ({ addTask, tasks, toggleTaskCategory }) => {
 
   const handleOnKeyPress = (e) => {
     if (e.key == "Enter") {
+      if(value.trim().length === 0) return
       addTask(value);
       setValue("");
     }
